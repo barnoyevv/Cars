@@ -1,16 +1,10 @@
 import "./index.css"
-import { Header, Sidebar } from "../../components"
-import { Outlet } from "react-router-dom"
+import ResponsiveDrawer from "../../components/layout/layout"
+
 const Index = () => {
 	return (
-		<div className="main-layout">
-			<Sidebar/>
-			<div className="main-right">
-				<Header/>
-				<main className="main">
-					<Outlet/>
-				</main>
-			</div>
+		<div>
+			<ResponsiveDrawer/>
 		</div>
 	)
 }

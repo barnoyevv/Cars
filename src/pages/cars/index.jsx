@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import UserModal from "../modal";
 import { NavLink } from "react-router-dom";
 import { nanoid } from "nanoid";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 const Index = () => {
 	const [cars, setCars] = useState([
@@ -28,14 +30,14 @@ const Index = () => {
 	const filteredCars = cars.filter(car =>
 		car.name.toLowerCase().includes(search.toLowerCase())
 	);
-	const toggle =()=>{
+	const toggle = () => {
 		setModal(false)
 		setCar({})
 	}
 	return (
 		<div>
 			<UserModal
-				car = {car}
+				car={car}
 				open={modal}
 				toggle={toggle}
 				cars={cars}
@@ -46,21 +48,13 @@ const Index = () => {
 					<div className="col-md-10 offset-1">
 						<div className="row">
 							<div className="col-md-4">
-								<button
-									className="btn btn-success"
-									onClick={() => setModal(true)}
-								>
-									Add Car
-								</button>
+								<Button className="btn btn-success" onClick={() => setModal(true)} variant="contained">Add Car</Button>
 							</div>
 							<div className="col-8">
-								<input
-									type="text"
-									placeholder="Search..."
+								<TextField fullWidth label="Search" id="fullWidth" type="text"
 									className="form-control"
 									value={search}
-									onChange={e => setSearch(e.target.value)}
-								/>
+									onChange={e => setSearch(e.target.value)} />
 							</div>
 						</div>
 					</div>
@@ -89,20 +83,12 @@ const Index = () => {
 									<td>{item.brand}</td>
 									<td>
 										<div className="d-flex gap-2 align-items-center">
-											<button className="btn btn-primary" onClick={() => openModal(item)}>
-												<i className="fa-solid fa-pen-to-square"></i>
-											</button>
-											<button
-												className="btn btn-danger"
-												onClick={() => handleDelete(item.id)}
-											>
-												<i className="fa-solid fa-trash"></i>
-											</button>
-											<NavLink
-												to={`/main/single-car/${item.id}`}
-												className="btn btn-warning"
-											>
-												<i className="fa-solid fa-eye"></i>
+											<div>
+												<Button className="btn" sx={{ bgcolor: "light-blue" }} onClick={() => openModal(item)} variant="contained"><i className="fa-solid fa-pen-to-square"></i></Button>
+											</div>
+											<Button className="btn" sx={{ bgcolor: "red" }} onClick={() => handleDelete(item.id)} variant="contained"><i className="fa-solid fa-trash"></i></Button>
+											<NavLink to={`/main/single-car/${item.id}`}>
+												<Button className="btn" sx={{ bgcolor: "orange" }} onClick={() => handleDelete(item.id)} variant="contained"><i className="fa-solid fa-eye"></i></Button>
 											</NavLink>
 										</div>
 									</td>
